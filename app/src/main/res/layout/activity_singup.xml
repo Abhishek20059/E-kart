@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/singup"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="20dp"
+    tools:context=".ui.login.SingupActivity">
+
+    <EditText
+        android:id="@+id/registername"
+        android:layout_width="325dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="61dp"
+        android:layout_marginBottom="60dp"
+        android:ems="10"
+
+        android:fontFamily="@font/archivo_black"
+        android:hint="@string/username"
+        android:inputType="textEmailAddress"
+        app:layout_constraintBottom_toTopOf="@+id/registerpassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.504"
+        android:autofillHints="John123" />
+
+    <EditText
+        android:id="@+id/registerpassword"
+        android:layout_width="325dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="53dp"
+        android:ems="10"
+        android:fontFamily="@font/archivo_black"
+
+        android:hint="Password"
+        android:inputType=""
+        app:layout_constraintBottom_toTopOf="@+id/secondpassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registername" />
+
+    <EditText
+        android:id="@+id/secondpassword"
+        android:layout_width="325dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="381dp"
+        android:ems="10"
+        android:fontFamily="@font/archivo_black"
+
+        android:hint="confirm Password"
+        android:inputType=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registerpassword" />
+
+    <EditText
+        android:id="@+id/registeremail"
+        android:layout_width="325dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+
+        android:fontFamily="@font/archivo_black"
+        android:hint="E-MAIL"
+        android:inputType="textEmailAddress"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/secondpassword"
+        app:layout_constraintVertical_bias="0.106" />
+
+    <EditText
+        android:id="@+id/address"
+        android:layout_width="325dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+        android:fontFamily="@font/archivo_black"
+
+        android:hint="Address"
+        android:inputType="textEmailAddress"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registeremail"
+        app:layout_constraintVertical_bias="0.154" />
+
+    <Button
+        android:id="@+id/signup1"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/archivo_black"
+        android:text="@string/singup"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/address" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
