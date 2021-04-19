@@ -43,6 +43,12 @@
     <string name="e_kart">E-KART</string>
     <string name="name">NAME:</string>
     <string name="price">PRICE :</string>
+    <string name="favorite">favorite</string>
+    <string name="be_seller">Be Seller</string>
+    <string name="logout_user">Logout</string>
+    <string name="kart">kart</string>
+    <string name="myproduct">My product</string>
+    <string name="user_name">User name</string>
 
 
 </resources>

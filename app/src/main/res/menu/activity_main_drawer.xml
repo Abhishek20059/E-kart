@@ -16,5 +16,34 @@
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_slideshow" />
+
+
+        <item
+            android:id="@+id/favorite"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/favorite"
+            />
+        <item
+            android:id="@+id/beseller"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/be_seller"
+
+            />
+        <item
+            android:id="@+id/logout"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/logout_user"
+            />
+        <item
+        android:id="@+id/myproduct"
+        android:icon="@drawable/ic_menu_slideshow"
+        android:title="@string/myproduct"
+        />
+        <item
+        android:id="@+id/kart"
+        android:icon="@drawable/ic_menu_slideshow"
+        android:title="@string/kart"
+        />
+
     </group>
 </menu>
