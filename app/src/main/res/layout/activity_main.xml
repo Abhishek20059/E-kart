@@ -1,56 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/singup"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="10dp"
-    android:background="@drawable/bgmain"
     android:visibility="visible"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@color/blue">
 
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="311dp"
-        android:layout_height="164dp"
-        android:background="#FDFAFA"
-        android:contentDescription="TODO"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.116"
-        app:srcCompat="@drawable/name" />
+    <Button
+        android:id="@+id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:filterTouchesWhenObscured="false"
+        android:shadowColor="@color/black"
+        android:text="@string/e_kart"
+        android:textColor="#FFFFFF"
+        android:textColorHighlight="#FF5722"
+        android:textColorHint="#FF5722"
+        android:textSize="51sp"
+        android:textStyle="bold"
+        app:backgroundTint="@color/orange"
+
+        />
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="277dp"
-        android:layout_height="85dp"
-        android:fontFamily="@font/archivo_black"
-        android:onClick="@string/singup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/button1"
+        android:layout_alignParentEnd="true"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="126dp"
+        android:fontFamily="@font/croissant_one"
         android:text="@string/singup"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.485"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-
-        app:layout_constraintVertical_bias="0.762" />
+        app:backgroundTint="#4CAF50"
+         />
 
     <Button
         android:id="@+id/button1"
-        android:layout_width="272dp"
-        android:layout_height="94dp"
-        android:fontFamily="@font/archivo_black"
-        android:onClick="@string/title_activity_login"
-        android:text="@string/login"
+        android:layout_width="143dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logo"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="96dp"
+        android:layout_marginEnd="125dp"
+        android:fontFamily="@font/croissant_one"
+        android:text=" Login"
+        android:textAlignment="center"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView1" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        app:backgroundTint="#4CAF50"
+        app:layout_constraintBottom_toTopOf="@+id/button2"
+
+        app:layout_constraintTop_toBottomOf="@+id/logo" />
+
+</RelativeLayout>

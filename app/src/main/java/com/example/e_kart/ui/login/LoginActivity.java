@@ -1,129 +1,168 @@
 package com.example.e_kart.ui.login;
 
-import android.app.Activity;
-
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.KeyEvent;
+import android.text.TextUtils;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.e_kart.AdminCategoryActivity;
 import com.example.e_kart.R;
+import com.example.e_kart.homeActivity;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import Prevalent.Prevalent;
+import io.paperdb.Paper;
+import model.User;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private LoginViewModel loginViewModel;
+    private EditText number, password;
+    private ProgressDialog LoadingBar;
+    private  String parentDbName = "Users";
+    private CheckBox chkboxRememberMe;
+    private TextView adminlink, notadminlink;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory())
-                .get(LoginViewModel.class);
 
-        final EditText usernameEditText = findViewById(R.id.registeremail);
-        final EditText passwordEditText = findViewById(R.id.registerpassword);
-        final Button loginButton = findViewById(R.id.singup);
-        final ProgressBar loadingProgressBar = findViewById(R.id.loading);
 
-        loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
-            @Override
-            public void onChanged(@Nullable LoginFormState loginFormState) {
-                if (loginFormState == null) {
-                    return;
-                }
-                loginButton.setEnabled(loginFormState.isDataValid());
-                if (loginFormState.getUsernameError() != null) {
-                    usernameEditText.setError(getString(loginFormState.getUsernameError()));
-                }
-                if (loginFormState.getPasswordError() != null) {
-                    passwordEditText.setError(getString(loginFormState.getPasswordError()));
-                }
-            }
-        });
-
-        loginViewModel.getLoginResult().observe(this, new Observer<LoginResult>() {
-            @Override
-            public void onChanged(@Nullable LoginResult loginResult) {
-                if (loginResult == null) {
-                    return;
-                }
-                loadingProgressBar.setVisibility(View.GONE);
-                if (loginResult.getError() != null) {
-                    showLoginFailed(loginResult.getError());
-                }
-                if (loginResult.getSuccess() != null) {
-                    updateUiWithUser(loginResult.getSuccess());
-                }
-                setResult(Activity.RESULT_OK);
-
-                //Complete and destroy login activity once successful
-                finish();
-            }
-        });
-
-        TextWatcher afterTextChangedListener = new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                // ignore
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // ignore
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                loginViewModel.loginDataChanged(usernameEditText.getText().toString(),
-                        passwordEditText.getText().toString());
-            }
-        };
-        usernameEditText.addTextChangedListener(afterTextChangedListener);
-        passwordEditText.addTextChangedListener(afterTextChangedListener);
-        passwordEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    loginViewModel.login(usernameEditText.getText().toString(),
-                            passwordEditText.getText().toString());
-                }
-                return false;
-            }
-        });
+        number = findViewById(R.id.registerNumber);
+        password = findViewById(R.id.registerpassword);
+        Button loginButton = findViewById(R.id.login_btn);
+        LoadingBar = new ProgressDialog(this);
+        chkboxRememberMe = findViewById(R.id.checkBox);
+        adminlink = findViewById(R.id.iamadmin);
+        notadminlink = findViewById(R.id.iamnotadmin);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadingProgressBar.setVisibility(View.VISIBLE);
-                loginViewModel.login(usernameEditText.getText().toString(),
-                        passwordEditText.getText().toString());
+
+                loginuser();
             }
         });
+
+        adminlink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loginButton.setText(R.string.LoginAdmin);
+                adminlink.setVisibility(View.INVISIBLE);
+                notadminlink.setVisibility(View.VISIBLE);
+                parentDbName = "admins";
+
+
+            }
+        });
+            notadminlink.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    loginButton.setText(R.string.login);
+                    adminlink.setVisibility(View.VISIBLE);
+                    notadminlink.setVisibility(View.INVISIBLE);
+                    parentDbName = "Users";
+
+                }
+            });
     }
 
-    private void updateUiWithUser(LoggedInUserView model) {
-        String welcome = getString(R.string.welcome) + model.getDisplayName();
-        // TODO : initiate successful logged in experience
-        Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
+
+
+    private void loginuser() {
+
+
+        String Password = password.getText().toString();
+        String Phonenumber = number.getText().toString();
+
+        if (TextUtils.isEmpty(Password))
+        {
+            Toast.makeText(this, "Please enter username", Toast.LENGTH_SHORT).show();
+        }
+        else if (TextUtils.isEmpty(Phonenumber))
+        {
+            Toast.makeText(this, "Please enter password", Toast.LENGTH_SHORT).show();
+        }
+
+        else
+        {
+            LoadingBar.setTitle("Login account");
+            LoadingBar.setTitle("Please wait ,while we are checking the credentials");
+            LoadingBar.setCanceledOnTouchOutside(false);
+            LoadingBar.show();
+
+            AllowAccessToAccount(Phonenumber,Password);
+        }
+
     }
 
-    private void showLoginFailed(@StringRes Integer errorString) {
-        Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
+    private void AllowAccessToAccount(String Phonenumber, String Password) {
+
+        if(chkboxRememberMe.isChecked())
+        {
+            Paper.book().write(Prevalent.UserPhonekey,Phonenumber);
+            Paper.book().write(Prevalent.UserPasswordkey, Password);
+        }
+
+
+        final DatabaseReference Rootref;
+        Rootref = FirebaseDatabase.getInstance().getReference();
+
+        Rootref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                if(dataSnapshot.child(parentDbName).child(Phonenumber).exists())
+                {
+
+                    User Userdata = dataSnapshot.child(parentDbName).child(Phonenumber).getValue(User.class);
+
+                    if(Userdata.getNumber().equals(Phonenumber))
+                    {
+                        if(Userdata.getPassword().equals(Password))
+                        {
+                           if(parentDbName.equals("admins"))
+                           {
+                               Toast.makeText(LoginActivity.this,"welcome admin, your Logged in successfully",Toast.LENGTH_SHORT).show();
+                               LoadingBar.dismiss();
+                               Intent home = new Intent(LoginActivity.this, AdminCategoryActivity.class);
+                               startActivity(home);
+                           }
+                           else if(parentDbName.equals("Users"))
+                           {
+                               Toast.makeText(LoginActivity.this,"Logged in successfully",Toast.LENGTH_SHORT).show();
+                               LoadingBar.dismiss();
+                               Intent home = new Intent(LoginActivity.this, homeActivity.class);
+                               startActivity(home);
+                           }
+                        }
+                    }
+                }
+                else
+                {
+                    Toast.makeText(LoginActivity.this,"Account with this "+ Phonenumber+"number do not exists",Toast.LENGTH_SHORT).show();
+                    LoadingBar.dismiss();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }

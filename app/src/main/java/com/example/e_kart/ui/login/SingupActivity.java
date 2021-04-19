@@ -22,87 +22,84 @@ import java.util.HashMap;
 
 public class SingupActivity extends AppCompatActivity {
 
-    private EditText InputName,InputPassword,Password,userAddress,InputEmailAddress;
+    private EditText InputName,InputPassword,Password,userAddress, InputNumber;
     private ProgressDialog LoadingBar;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_singup);
 
-         EditText InputName = findViewById(R.id.registername);
-         EditText InputPassword = findViewById(R.id.registerpassword);
-         EditText Password = findViewById(R.id.secondpassword);
-         EditText InputEmailAddress= findViewById(R.id.registeremail);
-         EditText Address = findViewById(R.id.address);
+        InputName = findViewById(R.id.registername);
+        InputPassword = findViewById(R.id.registerpassword);
+        Password = findViewById(R.id.secondpassword);
+        InputNumber = findViewById(R.id.registerNumber);
+        userAddress = findViewById(R.id.address);
         Button signup = findViewById(R.id.signup1);
         LoadingBar = new ProgressDialog(this);
 
-        signup.setOnClickListener(v -> CreateAccount());
+
+       signup.setOnClickListener(v -> CreateAccount());
 
     }
 
     private void CreateAccount() {
 
-        String UserName =  InputName.getText().toString();
-        String FirstPassword =  InputPassword.getText().toString();
+        String UserName = InputName.getText().toString();
+        String FirstPassword = InputPassword.getText().toString();
         String Password2 = Password.getText().toString();
         String Address = userAddress.getText().toString();
-        String EmailAddress = InputEmailAddress.getText().toString();
+        String Number = InputNumber.getText().toString();
 
-        if (TextUtils.isEmpty(UserName))
-        {
-            Toast.makeText(this,"Please enter username",Toast.LENGTH_SHORT).show();
-        }
+        if (TextUtils.isEmpty(UserName)) {
+            Toast.makeText(this, "Please enter username", Toast.LENGTH_SHORT).show();
+        } else if (TextUtils.isEmpty(FirstPassword)) {
+            Toast.makeText(this, "Please enter password", Toast.LENGTH_SHORT).show();
+        } else if (TextUtils.isEmpty(Password2)) {
+            Toast.makeText(this, "Please  confirmPassword", Toast.LENGTH_SHORT).show();
+        } else if (TextUtils.isEmpty(Address)) {
+            Toast.makeText(this, "Please enter number", Toast.LENGTH_SHORT).show();
+        } else if (TextUtils.isEmpty(Number)) {
+            Toast.makeText(this, "Please enter email", Toast.LENGTH_SHORT).show();
+        } else if (!FirstPassword.equals(Password2)) {
+            LoadingBar.dismiss();
+            Toast.makeText(SingupActivity.this, "Please confirm password", Toast.LENGTH_SHORT).show();
 
-       else if (TextUtils.isEmpty(FirstPassword))
-        {
-            Toast.makeText(this,"Please enter password",Toast.LENGTH_SHORT).show();
-        }
-
-
-       else if (TextUtils.isEmpty((CharSequence) Password2))
-        {
-            Toast.makeText(this,"Please  confirmPassword",Toast.LENGTH_SHORT).show();
-        }
-
-       else if (TextUtils.isEmpty(Address))
-        {
-            Toast.makeText(this,"Please enter address",Toast.LENGTH_SHORT).show();
-        }
-
-        else if (TextUtils.isEmpty(EmailAddress))
-        {
-            Toast.makeText(this,"Please enter email",Toast.LENGTH_SHORT).show();
-        }
-
-        else {
+        } else {
             LoadingBar.setTitle("Create account");
             LoadingBar.setTitle("Please wait ,while we are checking the credentials");
             LoadingBar.setCanceledOnTouchOutside(false);
             LoadingBar.show();
 
-            ValidateEmail(UserName,EmailAddress,Password2);
+
+              ValidateEmail(UserName, Number,Password2);
+
 
         }
     }
 
-    private void ValidateEmail(String InputName, String InputEmailAddress, String InputPassword) {
+    private void ValidateEmail(String UserName, String Number, String Password2)
+    {
 
         final DatabaseReference Rootref;
-         Rootref = FirebaseDatabase.getInstance().getReference();
-         Rootref.addListenerForSingleValueEvent(new ValueEventListener() {
+
+        Rootref = FirebaseDatabase.getInstance().getReference();
+
+        Rootref.addListenerForSingleValueEvent(new ValueEventListener() {
              @Override
              public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
 
-                 if(!(dataSnapshot.child("users").child(InputEmailAddress).exists()))
+                 if(!(dataSnapshot.child("users").child(Number).exists()))
                  {
                      HashMap<String, Object> UserDataMap = new HashMap<>();
-                     UserDataMap.put("UserName",InputName);
-                     UserDataMap.put("Password",InputPassword);
-                     UserDataMap.put("Email",InputEmailAddress);
 
-                     Rootref.child("Users").child(InputEmailAddress).updateChildren(UserDataMap)
+                     UserDataMap.put("UserName",UserName);
+                     UserDataMap.put("Password",Password2);
+                     UserDataMap.put("Number",Number);
+
+                     Rootref.child("Users").child(Number).updateChildren(UserDataMap)
                              .addOnCompleteListener(task -> {
 
                                  if (task.isSuccessful())
@@ -115,15 +112,15 @@ public class SingupActivity extends AppCompatActivity {
                                  }
                                  else {
                                      LoadingBar.dismiss();
-                                     Toast.makeText(SingupActivity.this,"Network Error: Plzz try again",Toast.LENGTH_SHORT).show();
+                                     Toast.makeText(SingupActivity.this,"Network Error: Please try again",Toast.LENGTH_SHORT).show();
                                  }
                              });
 
                  }
                  else {
-                     Toast.makeText(SingupActivity.this, "this " + InputEmailAddress + "  alredy exits", Toast.LENGTH_SHORT).show();
+                     Toast.makeText(SingupActivity.this, "this " + Number + "  already exits", Toast.LENGTH_SHORT).show();
                      LoadingBar.dismiss();
-                     Toast.makeText(SingupActivity.this, "pleas try again using another email address", Toast.LENGTH_SHORT).show();
+                     Toast.makeText(SingupActivity.this, "pleas try again using another Number address", Toast.LENGTH_SHORT).show();
 
                      Intent main = new Intent(SingupActivity.this, LoginActivity.class);
                      startActivity(main);
