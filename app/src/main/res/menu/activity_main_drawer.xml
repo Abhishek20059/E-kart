@@ -1,21 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="navigation_view">
+    tools:showIn="navigation_view"
+    >
 
     <group android:checkableBehavior="single">
+
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_menu_camera"
-            android:title="@string/menu_home" />
+            android:title="@string/menu_home"
+            android:visible="false"
+            
+            />
         <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_gallery" />
+            android:title="@string/menu_gallery"
+            android:visible="false"/>
         <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
+            android:title="@string/menu_slideshow"
+            android:visible="false"/>
 
 
         <item
@@ -30,20 +37,20 @@
 
             />
         <item
-            android:id="@+id/logout"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/logout_user"
-            />
-        <item
         android:id="@+id/myproduct"
         android:icon="@drawable/ic_menu_slideshow"
         android:title="@string/myproduct"
         />
         <item
         android:id="@+id/kart"
-        android:icon="@drawable/ic_menu_slideshow"
+        android:icon="@drawable/nav_cart"
         android:title="@string/kart"
         />
+        <item
+            android:id="@+id/logout"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/logout_user"
+            />
 
     </group>
 </menu>
