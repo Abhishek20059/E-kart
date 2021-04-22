@@ -27,6 +27,7 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -89,7 +90,7 @@ public class homeActivity extends AppCompatActivity implements NavigationView.On
 
         recyclerView = findViewById(R.id.recycler_menu);
         recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(this);
+        layoutManager = new GridLayoutManager(this,2);
         recyclerView.setLayoutManager(layoutManager);
 
     }
@@ -105,10 +106,10 @@ public class homeActivity extends AppCompatActivity implements NavigationView.On
                     @Override
                     protected void onBindViewHolder(@NonNull ProductViewHolder holder, int i, @NonNull Products model)
                     {
-                            holder.txtProductName.setText(model.getProduct_Name());
+                            holder.txtProductName.setText(model.getPname());
                         holder.txtProductDescription.setText(model.getDescription());
                         holder.txtProductPrice.setText( "Price = "+ model.getPrice());
-                        Picasso.get().load(model.getImage()).into(holder.imageView);
+                        Picasso.get().load(model.getImage1()).into(holder.imageView);
                     }
 
                     @NonNull
@@ -148,15 +149,15 @@ public class homeActivity extends AppCompatActivity implements NavigationView.On
         {
 
         }
-
         else if (id == R.id.nav_home)
-        {
+            {
 
-        }
+            }
             else if (id == R.id.nav_slideshow)
-        {
+            {
 
-        }else if (id == R.id.logout)
+            }
+            else if (id == R.id.logout)
         {
                 Paper.book().destroy();
             Intent intent = new Intent(homeActivity.this, MainActivity.class);

@@ -2,34 +2,33 @@ package model;
 
 public class Products
 {
-    private String Product_Name, description,Price , image, category ,pid, date, time;
+    private String pname, Description,Price , Image1, category ,pid, date, time;
 
     public Products(String product_Name, String description, String price, String image, String category, String pid, String date, String time) {
-        Product_Name = product_Name;
-        this.description = description;
+        pname = product_Name;
+        this.Description = description;
         Price = price;
-        this.image = image;
+        this.Image1 = image;
         this.category = category;
         this.pid = pid;
         this.date = date;
         this.time = time;
     }
 
-
-    public String getProduct_Name() {
-        return Product_Name;
+    public String getPname() {
+        return pname;
     }
 
-    public void setProduct_Name(String product_Name) {
-        Product_Name = product_Name;
+    public void setPname(String product_Name) {
+        pname = product_Name;
     }
 
     public String getDescription() {
-        return description;
+        return Description;
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.Description = description;
     }
 
     public String getPrice() {
@@ -40,12 +39,12 @@ public class Products
         Price = price;
     }
 
-    public String getImage() {
-        return image;
+    public String getImage1() {
+        return Image1;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImage1(String image) {
+        this.Image1 = image;
     }
 
     public String getCategory() {

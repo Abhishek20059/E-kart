@@ -26,7 +26,7 @@
     <string name="i_am_not_admin">i am not admin</string>
     <string name="LoginAdmin">Login admin</string>
     <string name="product_name">product name</string>
-    <string name="product_description">Product Description</string>
+    <string name="product_description1">Product Description</string>
     <string name="add_product">Add Product</string>
     <string name="product_price">product price</string>
     <string name="title_activity_home">homeActivity</string>
@@ -49,6 +49,10 @@
     <string name="kart">kart</string>
     <string name="myproduct">My product</string>
     <string name="user_name">User name</string>
+    <string name="product_nameview">Product Name</string>
+    <string name="productimage">product Image</string>
+    <string name="product_description">Product Description</string>
+    <string name="product_priceview">Product price</string>
 
 
 </resources>
