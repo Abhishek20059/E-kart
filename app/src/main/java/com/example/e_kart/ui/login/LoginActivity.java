@@ -147,6 +147,7 @@ public class LoginActivity extends AppCompatActivity {
                                Toast.makeText(LoginActivity.this,"Logged in successfully",Toast.LENGTH_SHORT).show();
                                LoadingBar.dismiss();
                                Intent home = new Intent(LoginActivity.this, homeActivity.class);
+                               Prevalent.currentonlineUser = Userdata;
                                startActivity(home);
                            }
                         }

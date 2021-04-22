@@ -27,7 +27,7 @@
 
         <item
             android:id="@+id/favorite"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/favorite2"
             android:title="@string/favorite"
             />
         <item
