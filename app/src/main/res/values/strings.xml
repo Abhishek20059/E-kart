@@ -22,8 +22,8 @@
     <string name="phone_number">Phone Number</string>
     <string name="logout">LOGOUT</string>
     <string name="remember_me">Remember Me</string>
-    <string name="i_am_admin">i am admin</string>
-    <string name="i_am_not_admin">i am not admin</string>
+    <string name="i_am_admin">i am seller</string>
+    <string name="i_am_not_admin">i am not seller</string>
     <string name="LoginAdmin">Login admin</string>
     <string name="product_name">product name</string>
     <string name="product_description1">Product Description</string>
