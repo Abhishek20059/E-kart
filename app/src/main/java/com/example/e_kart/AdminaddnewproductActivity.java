@@ -25,6 +25,7 @@ import com.google.firebase.storage.UploadTask;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Objects;
 
 public class AdminaddnewproductActivity extends AppCompatActivity {
 
@@ -173,7 +174,7 @@ public class AdminaddnewproductActivity extends AppCompatActivity {
                         public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
                             if (!task.isSuccessful())
                             {
-                                throw task.getException();
+                                throw Objects.requireNonNull(task.getException());
                             }
 
                             j++;
@@ -225,12 +226,14 @@ public class AdminaddnewproductActivity extends AppCompatActivity {
 
                     if(task.isSuccessful())
                     {
-                        Intent intent = new Intent(AdminaddnewproductActivity.this, AdminCategoryActivity.class);
-                        startActivity(intent);
+                            if(j==3) {                                                                                                                    //ERROR fix
 
-                        LoadingBar.dismiss();
-                        Toast.makeText(AdminaddnewproductActivity.this," Product is Added Successfully",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(AdminaddnewproductActivity.this, " Product is Added Successfully", Toast.LENGTH_SHORT).show();
+                                LoadingBar.dismiss();
+                                Intent intent = new Intent(AdminaddnewproductActivity.this, AdminCategoryActivity.class);
+                                    startActivity(intent);
 
+                                   }
                     }else
                     {
                         LoadingBar.dismiss();

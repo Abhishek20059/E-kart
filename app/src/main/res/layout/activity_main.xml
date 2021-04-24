@@ -53,7 +53,7 @@
         android:layout_marginTop="96dp"
         android:layout_marginEnd="125dp"
         android:fontFamily="@font/croissant_one"
-        android:text=" Login"
+        android:text="Login"
         android:textAlignment="center"
         android:textSize="24sp"
 

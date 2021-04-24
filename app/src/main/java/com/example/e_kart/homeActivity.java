@@ -53,15 +53,16 @@ public class homeActivity extends AppCompatActivity implements NavigationView.On
 
         Productsref = FirebaseDatabase.getInstance().getReference().child("Products");
 
-        Paper.init(this);
+        Paper.init(this);                                       // Rmember me
 
 
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Home");
+        toolbar.setTitle("E-KART");
+
         setSupportActionBar(toolbar);
 
 
-        FloatingActionButton fab = findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);              //floating kart button
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,6 +70,8 @@ public class homeActivity extends AppCompatActivity implements NavigationView.On
                         .setAction("Action", null).show();
             }
         });
+
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -159,7 +162,7 @@ public class homeActivity extends AppCompatActivity implements NavigationView.On
             }
             else if (id == R.id.logout)
         {
-                Paper.book().destroy();
+                Paper.book().destroy();                                                                     //Logout button
             Intent intent = new Intent(homeActivity.this, MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
