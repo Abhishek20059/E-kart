@@ -1,5 +1,6 @@
 package com.example.e_kart;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,6 +10,12 @@ import android.view.Menu;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+
+import com.example.e_kart.ui.BeSeller.BesellerActivity1;
+import com.example.e_kart.ui.Favorite.FavoriteActivity;
+import com.example.e_kart.ui.Kart.KartActivity;
+import com.example.e_kart.ui.MyProduct.MyProductActivity;
+import com.example.e_kart.ui.settings.SettingsActivity;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -19,6 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -28,7 +36,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import Prevalent.Prevalent;
@@ -46,6 +53,7 @@ public class homeActivity extends AppCompatActivity implements NavigationView.On
     RecyclerView.LayoutManager layoutManager;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,11 +66,10 @@ public class homeActivity extends AppCompatActivity implements NavigationView.On
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("E-KART");
-
         setSupportActionBar(toolbar);
 
 
-        FloatingActionButton fab = findViewById(R.id.fab);              //floating kart button
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,18 +78,21 @@ public class homeActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
         NavigationView navigationView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+        navigationView.setNavigationItemSelectedListener(this);
+
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
-                .setDrawerLayout(drawer)
+                R.id.nav_favorite, R.id.nav_kart, R.id.nav_beseller,R.id.nav_myproduct,R.id.nav_settings,R.id.nav_logout)
+                .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-        NavigationUI.setupWithNavController(navigationView, navController);
 
         View headerView = navigationView.getHeaderView(0);
         TextView usernameTextView = headerView.findViewById(R.id.user_profile_name);
@@ -107,21 +117,19 @@ public class homeActivity extends AppCompatActivity implements NavigationView.On
         FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter =
                 new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
                     @Override
-                    protected void onBindViewHolder(@NonNull ProductViewHolder holder, int i, @NonNull Products model)
-                    {
-                            holder.txtProductName.setText(model.getPname());
+                    protected void onBindViewHolder(@NonNull ProductViewHolder holder, int i, @NonNull Products model) {
+                        holder.txtProductName.setText(model.getPname());
                         holder.txtProductDescription.setText(model.getDescription());
-                        holder.txtProductPrice.setText( "Price = "+ model.getPrice());
+                        holder.txtProductPrice.setText("Price = " + model.getPrice());
                         Picasso.get().load(model.getImage1()).into(holder.imageView);
                     }
 
                     @NonNull
                     @Override
-                    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
-                    {
-                      View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_item_layout,parent,false);
-                      ProductViewHolder holder = new ProductViewHolder(view);
-                      return holder;
+                    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_item_layout, parent, false);
+                        ProductViewHolder holder = new ProductViewHolder(view);
+                        return holder;
                     }
                 };
 
@@ -144,38 +152,43 @@ public class homeActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
+    @SuppressLint("NonConstantResourceId")
     public boolean onNavigationItemSelected(MenuItem item)
     {
-        int id = item.getItemId();
+        switch (item.getItemId()) {
+            case R.id.nav_favorite:
+                Intent f = new Intent(homeActivity.this, FavoriteActivity.class);
+                startActivity(f);
+                break;
 
-        if (id == R.id.nav_gallery)
-        {
+            case R.id.nav_myproduct:
+                Intent mp = new Intent(homeActivity.this, MyProductActivity.class);
+                startActivity(mp);
+                break;
 
+            case R.id.nav_kart:
+                Intent kart = new Intent(homeActivity.this, KartActivity.class);
+                startActivity(kart);
+                break;
+
+            case R.id.nav_beseller:
+                Intent bs = new Intent(homeActivity.this, BesellerActivity1.class);
+                startActivity(bs);                break;
+
+            case R.id.nav_settings:
+                Intent settings = new Intent(homeActivity.this, SettingsActivity.class);
+                startActivity(settings);
+                break;
+
+            case R.id.nav_logout:
+                Paper.book().destroy();
+                Intent intent1 = new Intent (homeActivity.this, MainActivity.class);
+                startActivity(intent1);
+                break;
         }
-        else if (id == R.id.nav_home)
-            {
-
-            }
-            else if (id == R.id.nav_slideshow)
-            {
-
-            }
-            else if (id == R.id.logout)
-        {
-                Paper.book().destroy();                                                                     //Logout button
-            Intent intent = new Intent(homeActivity.this, MainActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-        }
-
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-
-    }
-
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
 }

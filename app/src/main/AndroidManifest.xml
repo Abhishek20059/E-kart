@@ -17,7 +17,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Ekart">
-        <activity android:name=".SettingsActivity"></activity>
+        <activity android:name=".ui.MyProduct.MyProductActivity"></activity>
+        <activity android:name=".ui.Kart.KartActivity" />
+        <activity android:name=".ui.Favorite.FavoriteActivity" />
+        <activity android:name=".ui.BeSeller.BesellerActivity1" />
+        <activity android:name=".ui.settings.SettingsActivity" />
         <activity
             android:name=".homeActivity"
             android:label="@string/title_activity_home"

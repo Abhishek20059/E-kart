@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
+
     app:startDestination="@+id/nav_home">
 
     <fragment
@@ -22,4 +23,34 @@
         android:name="com.example.e_kart.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+
+    <fragment
+        android:id="@+id/nav_favorite"
+        android:name="com.example.e_kart.ui.Favorite.FavoriteActivity"
+        android:label="Favorite"
+        tools:layout="@layout/activity_favorite" />
+
+    <fragment
+        android:id="@+id/nav_beseller"
+        android:name="com.example.e_kart.ui.BeSeller.BesellerActivity1"
+        android:label="BeSeller"
+        tools:layout="@layout/activity_beseller1" />
+
+    <fragment
+        android:id="@+id/nav_myproduct"
+        android:name="com.example.e_kart.ui.MyProduct.MyProductActivity"
+        android:label="MyProducts"
+        tools:layout="@layout/activity_my_product" />
+
+    <fragment
+        android:id="@+id/nav_kart"
+        android:name="com.example.e_kart.ui.Kart.KartActivity"
+        android:label="KART"
+        tools:layout="@layout/activity_kart" />
+
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.example.e_kart.ui.settings.SettingsActivity"
+        android:label="Settings"
+        tools:layout="@layout/activity_settings" />
 </navigation>

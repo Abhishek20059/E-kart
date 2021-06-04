@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="navigation_view"
-    >
+    tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
 
@@ -10,49 +9,49 @@
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_menu_camera"
             android:title="@string/menu_home"
-            android:visible="false"
-            
-            />
+            android:visible="false" />
+
         <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/menu_gallery"
-            android:visible="false"
+            android:visible="false" />
 
-            />
         <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_slideshow"
-            android:visible="false"/>
-
+            android:visible="false" />
 
         <item
-            android:id="@+id/favorite"
-            android:icon="@drawable/favorite2"
-            android:title="@string/favorite"
-            />
+            android:id="@+id/nav_favorite"
+            android:icon="@drawable/ic_favorite"
+            android:title="@string/favorite" />
+
         <item
-            android:id="@+id/beseller"
+            android:id="@+id/nav_beseller"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/be_seller"
+            android:title="@string/be_seller" />
 
-            />
         <item
-        android:id="@+id/myproduct"
-        android:icon="@drawable/ic_menu_slideshow"
-        android:title="@string/myproduct"
-        />
-        <item
-        android:id="@+id/kart"
-        android:icon="@drawable/nav_cart"
-        android:title="@string/kart"
-        />
-        <item
-            android:id="@+id/logout"
+            android:id="@+id/nav_myproduct"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/logout_user"
-            />
+            android:title="@string/myproduct" />
+
+        <item
+            android:id="@+id/nav_kart"
+            android:icon="@drawable/nav_cart"
+            android:title="@string/kart" />
+
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_settings"
+            android:title="@string/action_settings" />
+
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_logout"
+            android:title="@string/logout_user" />
 
     </group>
 </menu>
