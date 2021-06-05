@@ -50,34 +50,22 @@ public class LoginActivity extends AppCompatActivity {
         adminlink = findViewById(R.id.iamadmin);
         notadminlink = findViewById(R.id.iamnotadmin);
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        loginButton.setOnClickListener(v -> loginuser());
 
-                loginuser();
-            }
+        adminlink.setOnClickListener(v -> {
+            loginButton.setText(R.string.LoginAdmin);
+            adminlink.setVisibility(View.INVISIBLE);
+            notadminlink.setVisibility(View.VISIBLE);
+            parentDbName = "admins";
+
+
         });
+            notadminlink.setOnClickListener(v -> {
+                loginButton.setText(R.string.login);
+                adminlink.setVisibility(View.VISIBLE);
+                notadminlink.setVisibility(View.INVISIBLE);
+                parentDbName = "Users";
 
-        adminlink.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loginButton.setText(R.string.LoginAdmin);
-                adminlink.setVisibility(View.INVISIBLE);
-                notadminlink.setVisibility(View.VISIBLE);
-                parentDbName = "admins";
-
-
-            }
-        });
-            notadminlink.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    loginButton.setText(R.string.login);
-                    adminlink.setVisibility(View.VISIBLE);
-                    notadminlink.setVisibility(View.INVISIBLE);
-                    parentDbName = "Users";
-
-                }
             });
     }
 
@@ -131,6 +119,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     User Userdata = dataSnapshot.child(parentDbName).child(Phonenumber).getValue(User.class);
 
+                    assert Userdata != null;
                     if(Userdata.getNumber().equals(Phonenumber))
                     {
                         if(Userdata.getPassword().equals(Password))
