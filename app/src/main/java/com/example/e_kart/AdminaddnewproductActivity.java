@@ -1,6 +1,7 @@
 package com.example.e_kart;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -31,7 +32,6 @@ public class AdminaddnewproductActivity extends AppCompatActivity {
 
     private String categoryName, Description, Price, Pname , saveCurrentDate , saveCurrentTime;
     private ImageView InputProductImage1,InputProductImage2,InputProductImage3,InputProductImage4;
-    private Button AddNewProductButton;
     private EditText InputProductName, InputProductDescription, InputProductPrice;
     private static final int GalleryPick = 1 ;
     public Uri ImageUri1,ImageUri2,ImageUri3,ImageUri4;
@@ -51,11 +51,15 @@ public class AdminaddnewproductActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adminaddnewproduct);
 
-        AddNewProductButton = findViewById(R.id.add_new_product);
+        Button addNewProductButton = findViewById(R.id.add_new_product);
         InputProductImage1  = findViewById(R.id.select_product_image);
         InputProductImage2  = findViewById(R.id.select_product_image2);
         InputProductImage3  = findViewById(R.id.select_product_image3);
         InputProductImage4  = findViewById(R.id.select_product_image4);
+
+        ActionBar actionBar = getSupportActionBar();   // or getActionBar()
+        assert actionBar != null;
+        actionBar.hide();
 
         InputProductName = findViewById(R.id.product_name);
         InputProductDescription = findViewById(R.id.product_description);
@@ -73,7 +77,7 @@ public class AdminaddnewproductActivity extends AppCompatActivity {
                 opengallery();
             }
         });
-        AddNewProductButton.setOnClickListener(new View.OnClickListener() {
+        addNewProductButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { ValidateProductData(); }
         });

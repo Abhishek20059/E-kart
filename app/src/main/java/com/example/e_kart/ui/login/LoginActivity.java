@@ -10,10 +10,9 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.e_kart.AdminCategoryActivity;
 import com.example.e_kart.R;
 import com.example.e_kart.homeActivity;
@@ -29,6 +28,8 @@ import model.User;
 
 public class LoginActivity extends AppCompatActivity {
 
+
+
     private EditText number, password;
     private ProgressDialog LoadingBar;
     private  String parentDbName = "Users";
@@ -40,7 +41,9 @@ public class LoginActivity extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        ActionBar actionBar = getSupportActionBar();   // or getActionBar()
 
+        actionBar.hide();
 
         number = findViewById(R.id.registerNumber);
         password = findViewById(R.id.registerpassword);
@@ -49,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
         chkboxRememberMe = findViewById(R.id.checkBox);
         adminlink = findViewById(R.id.iamadmin);
         notadminlink = findViewById(R.id.iamnotadmin);
+
 
         loginButton.setOnClickListener(v -> loginuser());
 

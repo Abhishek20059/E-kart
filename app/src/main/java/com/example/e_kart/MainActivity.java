@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.e_kart.ui.login.LoginActivity;
@@ -41,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
         Paper.init(this);
         LoadingBar = new ProgressDialog(this);
 
+        ActionBar actionBar = getSupportActionBar();   // or getActionBar()
+        actionBar.hide();
 
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(MainActivity.this,"Logged in successfully",Toast.LENGTH_SHORT).show();
                             LoadingBar.dismiss();
                             Intent home = new Intent(MainActivity.this,homeActivity.class);
+                            Prevalent.currentonlineUser=Userdata;
                             startActivity(home);
                         }
                     }

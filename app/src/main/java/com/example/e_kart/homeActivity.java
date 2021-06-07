@@ -26,6 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
 import androidx.navigation.NavController;
@@ -46,7 +47,6 @@ import model.Products;
 
 public class homeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
-
     private DatabaseReference Productsref;
     private AppBarConfiguration mAppBarConfiguration;
     private RecyclerView recyclerView;
@@ -99,6 +99,7 @@ public class homeActivity extends AppCompatActivity implements NavigationView.On
         CircleImageView profileImage = headerView.findViewById(R.id.user_profile_image);
 
         usernameTextView.setText(Prevalent.currentonlineUser.getUserName());
+        Picasso.get().load(Prevalent.currentonlineUser.getImage()).placeholder(R.drawable.profile).into(profileImage);
 
 
         recyclerView = findViewById(R.id.recycler_menu);
@@ -111,6 +112,7 @@ public class homeActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onStart() {
         super.onStart();
+
         FirebaseRecyclerOptions<Products> options =
                 new FirebaseRecyclerOptions.Builder<Products>().setQuery(Productsref, Products.class).build();
 
@@ -173,7 +175,8 @@ public class homeActivity extends AppCompatActivity implements NavigationView.On
 
             case R.id.nav_beseller:
                 Intent bs = new Intent(homeActivity.this, BesellerActivity1.class);
-                startActivity(bs);                break;
+                startActivity(bs);
+                break;
 
             case R.id.nav_settings:
                 Intent settings = new Intent(homeActivity.this, SettingsActivity.class);
