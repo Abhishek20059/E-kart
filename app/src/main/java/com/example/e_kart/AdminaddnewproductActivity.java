@@ -191,8 +191,6 @@ public class AdminaddnewproductActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Uri> task) {
                             if (task.isSuccessful()) {
 
-
-
                                 downimg[j] = String.valueOf(Uri.parse(task.getResult().toString()));//and this also
                                 Toast.makeText(AdminaddnewproductActivity.this, "got the Product Image URL Successfully", Toast.LENGTH_SHORT).show();
                                 saveProductinfoToDatabase();

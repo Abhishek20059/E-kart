@@ -124,6 +124,20 @@ public class homeActivity extends AppCompatActivity implements NavigationView.On
                         holder.txtProductDescription.setText(model.getDescription());
                         holder.txtProductPrice.setText("Price = " + model.getPrice());
                         Picasso.get().load(model.getImage1()).into(holder.imageView);
+                        Picasso.get().load(model.getImage2()).into(holder.imageView);
+                        Picasso.get().load(model.getImage3()).into(holder.imageView);
+                        Picasso.get().load(model.getImage4()).into(holder.imageView);
+
+
+                        holder.itemView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent= new Intent(homeActivity.this,ProductDetalisActivity.class);
+                                intent.putExtra("pid",model.getPid());
+                                startActivity(intent);
+                            }
+                        });
+
                     }
 
                     @NonNull

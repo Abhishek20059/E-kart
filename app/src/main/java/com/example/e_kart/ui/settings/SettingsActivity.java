@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.e_kart.MainActivity;
 import com.example.e_kart.R;
+import com.example.e_kart.homeActivity;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -132,7 +133,7 @@ public class SettingsActivity extends AppCompatActivity {
         ref.child(Prevalent.currentonlineUser.getNumber()).updateChildren(UserMap);
 
 
-        startActivity(new Intent(SettingsActivity.this, MainActivity.class));
+        startActivity(new Intent(SettingsActivity.this, homeActivity.class));
         Toast.makeText(SettingsActivity.this, "Profile InFo updated sucesfully", Toast.LENGTH_SHORT).show();
         finish();
 
@@ -202,7 +203,7 @@ public class SettingsActivity extends AppCompatActivity {
 
                         progressDialog.dismiss();
 
-                        startActivity(new Intent(SettingsActivity.this, MainActivity.class));
+                        startActivity(new Intent(SettingsActivity.this, homeActivity.class));
                         Toast.makeText(SettingsActivity.this, "Profile InFo updated sucesfully", Toast.LENGTH_SHORT).show();
                         finish();
                     }
