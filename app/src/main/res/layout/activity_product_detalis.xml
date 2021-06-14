@@ -21,6 +21,7 @@
         android:id="@+id/Product_image_details2"
         android:layout_width="match_parent"
         android:layout_height="260dp"
+        android:layout_marginTop="20dp"
         android:scaleType="centerCrop"
         android:layout_below="@id/count_number_btn"
         />
@@ -89,18 +90,20 @@
         android:layout_below="@id/product_price_details"
         android:layout_marginTop="10dp" />
 
-<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-<!--        android:id="@+id/add_product_to_cart_btn"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:elevation="6sp"-->
-<!--        android:backgroundTint="@color/white"-->
-<!--        android:src="@drawable/cart"-->
-<!--        android:isScrollContainer="false"-->
-<!--        android:layout_alignParentBottom="true"-->
-<!--        android:layout_alignParentEnd="true"-->
-<!--        android:contentDescription="@string/product_description"-->
-<!--        android:layout_margin="20dp"-->
-<!--        />-->
+<Button
+    android:id="@+id/product_add_to_cart_button"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:backgroundTint="@color/blue"
+    android:layout_margin="15dp"
+    android:layout_alignParentEnd="true"
+    android:layout_alignParentBottom="true"
+    android:text="Add to Cart"
+    android:textColor="@color/white"
+    android:textSize="18sp"
+
+    />
+
+
 </RelativeLayout>
 </ScrollView>

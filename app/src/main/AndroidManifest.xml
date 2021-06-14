@@ -18,8 +18,8 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        >
+        android:supportsRtl="true">
+
         <activity android:name=".ProductDetalisActivity" />
         <activity android:name=".ui.MyProduct.MyProductActivity" />
         <activity android:name=".ui.Kart.KartActivity" />

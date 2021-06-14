@@ -53,6 +53,8 @@
     <string name="productimage">product Image</string>
     <string name="product_description">Product Description</string>
     <string name="product_priceview">Product price</string>
+    <string name="total_price">Total Price :</string>
+    <string name="buy_all">Buy all</string>
 
 
 </resources>

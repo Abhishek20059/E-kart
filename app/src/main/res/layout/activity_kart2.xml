@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.Kart.KartActivity">
+
+
+    <RelativeLayout
+        android:id="@+id/r2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:layout_alignParentTop="true"
+        tools:targetApi="lollipop">
+
+        <TextView
+            android:id="@+id/Total_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/total_price"
+            android:height="40dp"
+            android:textSize="34sp"
+            />
+
+</RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cart_list"
+        class="androidx.appcompat.app.AlertController$RecycleListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/r2"
+        android:layout_above="@id/buy_all_btn"
+        >
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+    <Button
+        android:id="@+id/buy_all_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:backgroundTint="@color/colorPrimary"
+        android:text="@string/buy_all"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+
+
+        tools:targetApi="lollipop" />
+
+</RelativeLayout>
