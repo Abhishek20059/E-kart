@@ -48,12 +48,12 @@ public class KartActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        final DatabaseReference cartlistref = FirebaseDatabase.getInstance().getReference().child("Cart List");
+        final DatabaseReference cartlistref = FirebaseDatabase.getInstance().getReference().child("Cart Product");
         FirebaseRecyclerOptions<Cart> options =
                 new FirebaseRecyclerOptions.Builder<Cart>()
                         .setQuery(cartlistref.child("User View")
                                 .child(Prevalent.currentonlineUser.getNumber())
-                                .child("kart product"),Cart.class)
+                                .child("Cart List"),Cart.class)
                         .build();
 
         FirebaseRecyclerAdapter<Cart, CartViewHolder> adapter =
